@@ -125,7 +125,7 @@ class sde_RBF(RBF):
         H[0,0] = 1
 
         # Infinite covariance:
-        Pinf = lyap(F, -np.dot(L,np.dot( Qc[0,0],L.T)))
+        Pinf = lyap(F, -np.linalg.multi_dot([L,Qc[0,0],L.T])
         Pinf = 0.5*(Pinf + Pinf.T)
         # Allocating space for derivatives
         dF    = np.empty([F.shape[0],F.shape[1],2])
